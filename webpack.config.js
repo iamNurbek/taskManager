@@ -4,73 +4,108 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const config = {
-  entry: ['react-hot-loader/patch', './src/index.tsx'],
+// const config = {
+//   entry: ['react-hot-loader/patch', './src/index.tsx'],
+//   output: {
+//     path: path.resolve(__dirname, 'dist'),
+//     filename: 'bundle.js',
+//   },
+//   module: {
+//     rules: [
+//       {
+//         test: /\.(js|jsx)$/,
+//         use: 'babel-loader',
+//         exclude: /node_modules/,
+//       },
+//       {
+//         test: /\.css$/,
+//         use: ['style-loader', 'css-loader'],
+//         exclude: /\.module\.css$/,
+//       },
+//       {
+//         test: /\.ts(x)?$/,
+//         loader: 'ts-loader',
+//         exclude: /node_modules/,
+//       },
+//       {
+//         test: /\.css$/,
+//         use: [
+//           'style-loader',
+//           {
+//             loader: 'css-loader',
+//             options: {
+//               importLoaders: 1,
+//               modules: true,
+//             },
+//           },
+//         ],
+//         include: /\.module\.css$/,
+//       },
+//       {
+//         test: /\.scss$/,
+//         use: ['style-loader', 'css-loader', 'sass-loader'],
+//       },
+//     ],
+//   },
+//   plugins: [
+//     new CopyPlugin({
+//       patterns: [{ from: 'src/index.html' }],
+//     }),
+//     new HtmlWebpackPlugin({
+//       templateContent: ({ htmlWebpackPlugin }) =>
+//         '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
+//         htmlWebpackPlugin.options.title +
+//         '</title></head><body><div id="app"></div></body></html>',
+//       filename: 'index.html',
+//     }),
+//     new CleanWebpackPlugin(),
+//   ],
+//   devServer: {
+//     static: {
+//       directory: './dist',
+//     },
+//   },
+//   resolve: {
+//     extensions: ['.tsx', '.ts', '.js'],
+//     alias: {
+//       'react-dom': '@hot-loader/react-dom',
+//     },
+//   },
+// };
+
+// module.exports = config;
+
+module.exports = {
+  entry: './client/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   },
+  mode: process.env.NODE_ENV,
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?/,
         use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-        exclude: /\.module\.css$/,
-      },
-      {
-        test: /\.ts(x)?$/,
-        loader: 'ts-loader',
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true,
-            },
-          },
-        ],
-        include: /\.module\.css$/,
-      },
-      {
-        test: /\.scss$/,
+        test: /\.s?css/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
-  plugins: [
-    new CopyPlugin({
-      patterns: [{ from: 'src/index.html' }],
-    }),
-    new HtmlWebpackPlugin({
-      templateContent: ({ htmlWebpackPlugin }) =>
-        '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
-        htmlWebpackPlugin.options.title +
-        '</title></head><body><div id="app"></div></body></html>',
-      filename: 'index.html',
-    }),
-    new CleanWebpackPlugin(),
-  ],
   devServer: {
     static: {
-      directory: './dist',
+      publicPath: '/',
+      directory: path.resolve(__dirname),
     },
+    port: 8080,
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Development',
+      template: path.resolve(__dirname, './index.html'),
+    }),
+  ],
 };
-
-module.exports = config;
