@@ -21,9 +21,7 @@ const TodoController = {
   // This is where I can get the todo list items to display
   // <---------------------------------------------------------------- GET ----------------------------------------------------------------> ✅
   getTodo(req, res, next) {
-    Todo.find({
-      todo: req.body.todo,
-    })
+    Todo.find()
       .then((data) => {
         res.locals.getTodo = data;
         return next();
@@ -36,15 +34,38 @@ const TodoController = {
   // update any todo items from the frontend to the database
   // <---------------------------------------------------------------- PATCH ----------------------------------------------------------------> ❌
 
-  updateTodo(req, res) {},
+  updateTodo(req, res, next) {
+    Todo.findOneAndUpdate(
+      {
+        todo: req.body.todo,
+      },
+      {
+        todo: req.body.updateTodo,
+      }
+    )
+      .then((data) => {
+        res.locals.updateTodo = data;
+        return next();
+      })
+      .catch((err) => {
+        console.log('❌❌❌<-- todo UPDATE -->❌❌❌ ', err);
+      });
+  },
 
   // delete an item after completion
   // <---------------------------------------------------------------- DELETE ----------------------------------------------------------------> ❌
-  deleteTodo(req, res) {
-    try {
-    } catch (err) {
-      console.log('❌❌❌<-- todo DELETE -->❌❌❌ ', err);
-    }
+  deleteTodo(req, res, next) {
+    Todo.findOneAndDelete({
+      todo: req.body.todo,
+    })
+      .then((data) => {
+        res.locals.deleteTodo = data;
+        console.log('Delete Succesfully');
+        return next();
+      })
+      .catch((err) => {
+        console.log('❌❌❌<-- todo DELETE -->❌❌❌ ', err);
+      });
   },
 };
 

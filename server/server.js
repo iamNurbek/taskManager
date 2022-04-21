@@ -33,11 +33,15 @@ todoRouter.get('/get', todoController.getTodo, (req, res) => {
 
 // Change a students name
 // http://localhost:3000/student/"name"
-todoRouter.patch('/update', todoController.updateTodo);
+todoRouter.patch('/update', todoController.updateTodo, (req, res) => {
+  res.status(200).json(res.locals.updateTodo);
+});
 
 // Delete a student from the da tabase
 // http://localhost:3000/student/"name"
-todoRouter.delete('/delete', todoController.deleteTodo);
+todoRouter.delete('/delete', todoController.deleteTodo, (req, res) => {
+  res.status(200).json(res.locals.deleteTodo);
+});
 
 // Unknown route handler
 app.use((req, res) => res.sendStatus(404));

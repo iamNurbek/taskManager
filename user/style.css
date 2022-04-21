@@ -1,0 +1,13 @@
+#app {
+  border: 5px solid yellow;
+}
+
+#TodoView {
+  border: 5px solid black;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+#todoList {
+  border: 5px solid green;
+}

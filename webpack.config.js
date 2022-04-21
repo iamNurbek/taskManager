@@ -76,11 +76,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // module.exports = config;
 
 module.exports = {
-  entry: './client/index.js',
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
-  },
+  entry: './user/index.js',
+  // output: {
+  // path: path.resolve(__dirname, 'build'),
+  // filename: 'bundle.js',
+  // },
   mode: process.env.NODE_ENV,
   module: {
     rules: [
@@ -101,6 +101,9 @@ module.exports = {
       directory: path.resolve(__dirname),
     },
     port: 8080,
+    proxy: {
+      '/todo': 'http://localhost:3000',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

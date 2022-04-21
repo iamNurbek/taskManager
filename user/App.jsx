@@ -1,11 +1,13 @@
-import React from 'react';
-import MainContainer from './containers/MainContainer.jsx';
-
-const App = () => (
-  <div id="app">
-    <h1>App</h1>
-    <MainContainer />
-  </div>
-);
+import React, { Component } from 'react';
+import TodoView from './containers/TodoView.jsx';
+import Form from './form/Form.jsx';
+const App = () => {
+  return (
+    <div id="app">
+      <h1>App</h1>
+      <TodoView />
+    </div>
+  );
+};
 
 export default App;

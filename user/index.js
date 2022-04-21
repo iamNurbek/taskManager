@@ -1,13 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 import App from './App.jsx';
-import store from './store.js';
-import style from './style.css';
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+render(<App />, document.getElementById('root'));
+
+// const element = <h1> This is my Index js file</h1>;
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// root.render(element);
