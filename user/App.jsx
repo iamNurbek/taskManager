@@ -4,7 +4,6 @@ import Form from './form/Form.jsx';
 const App = () => {
   return (
     <div id="app">
-      <h1>App</h1>
       <TodoView />
     </div>
   );

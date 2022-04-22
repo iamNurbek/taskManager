@@ -20,12 +20,14 @@ const todoView = ({ todoName }) => {
   //iteraet throughthe array so that you grab the info that you really want to show in the frontend(to the client)
   const todoArr = [];
   for (let i = 0; i < todoState.length; i++) {
-    todoArr.push(<TodoList todoName={todoState[i].todo} key={i} />);
+    todoArr.push(
+      <TodoList todoName={todoState[i].todo} id={todoState[i]._id} key={i} />
+    );
   }
 
   return (
     <div id="todoView">
-      <h1>Todo View (Black)</h1>
+      <h1> My To Do List</h1>
       <Form />
       {todoArr}
     </div>

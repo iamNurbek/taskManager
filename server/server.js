@@ -39,7 +39,7 @@ todoRouter.patch('/update', todoController.updateTodo, (req, res) => {
 
 // Delete a student from the da tabase
 // http://localhost:3000/student/"name"
-todoRouter.delete('/delete', todoController.deleteTodo, (req, res) => {
+todoRouter.delete('/delete/:id', todoController.deleteTodo, (req, res) => {
   res.status(200).json(res.locals.deleteTodo);
 });
 

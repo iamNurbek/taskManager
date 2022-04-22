@@ -56,7 +56,7 @@ const TodoController = {
   // <---------------------------------------------------------------- DELETE ----------------------------------------------------------------> ❌
   deleteTodo(req, res, next) {
     Todo.findOneAndDelete({
-      todo: req.body.todo,
+      _id: req.params.id,
     })
       .then((data) => {
         res.locals.deleteTodo = data;

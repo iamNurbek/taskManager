@@ -1,30 +1,29 @@
 import React, { Component, useEffect, useState } from 'react';
 
-const TodoList = ({ todoName }) => {
-  function deleteTodo() {
-    const [todoState, setTodoState] = useState([]);
-    //put deleting functionality here
-
-    useEffect(() => {
-      fetch('/todo/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'Application/JSON',
-        },
+const TodoList = ({ todoName, id }) => {
+  function deleteTodo(id) {
+    fetch(`/todo/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+    })
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setTodoState(data);
-        })
-        .catch((err) => console.log('Encountered error in DELETE fetch', err));
-    }, []);
+      .then((data) => {
+        console.log(`this should be delete `, data);
+      })
+      .catch((err) => console.log('Encountered error in DELETE fetch', err));
+    window.location.reload(false);
   }
 
   return (
     <div id="todoList">
-      <h1>Todo List (Green) </h1>
-      <li>{todoName}</li>
-      <button onClick={deleteTodo}> Delete </button>
+      <p className="todoList"> {todoName} </p>
+      <button className="deleteButton" onClick={() => deleteTodo(id)}>
+        Delete
+      </button>
     </div>
   );
 };

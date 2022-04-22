@@ -1,13 +1,66 @@
-#app {
-  border: 5px solid yellow;
+#todoView {
+  border: 5px solid black;
+  background: #eee;
 }
 
-#TodoView {
-  border: 5px solid black;
-  /* display: flex; */
-  /* flex-direction: column; */
+.inputBox {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 3em;
+}
+
+h1 {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 2em;
+  margin: 0;
+  color: white;
 }
 
 #todoList {
-  border: 5px solid green;
+  /* border: 5px solid green; */
+  display: flex;
+  justify-content: center;
+  height: 3em;
+  text-align: center;
+  margin: 10px;
+}
+
+.todoList {
+  cursor: pointer;
+  width: 97%;
+  /* text-align: center; */
+  background: #eee;
+  height: 100%;
+  margin-top: 0px;
+  font-size: 28px;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: auto;
+}
+
+.todoList:hover {
+  background: #ddd;
+}
+
+.deleteButton {
+  border: 5px solid #eee;
+  width: 3%;
+  text-align: center;
+  height: 100%;
+  transition: 0.2s;
+  padding: auto;
+}
+
+.deleteButton:hover {
+  background-color: #f44336;
+  color: white;
+  height: 100%;
 }
